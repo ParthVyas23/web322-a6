@@ -1,0 +1,64 @@
+<title>BH Dashboard</title>
+
+{{>nav}}
+
+<main id="dashboard">
+    <h1>Dashboard</h1>
+    <h3>Welcome, {{user.firstName}} {{user.lastName}}.</h3>
+    <p>Here you may view your account details as well as access your owned domains.</p>
+    <div id="dashboard-grid">
+        <div id="account-info">
+            <h2>Account</h2>
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{user.userName}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td>{{user.address}} {{user.addressLine2}}<br>{{user.city}}, {{user.province}} {{user.country}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="domain-manager">
+            <h2>Domain Manager</h2>
+            <p>Coming soon!</p>
+        </div>
+
+        {{#if user.isAdmin}}
+        <div id="admin-panel">
+            <h2>Admin Panel</h2>
+            <p>Edit existing articles:</p>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date Posted</th>
+                </tr>
+                {{#each articles}}
+                <tr>
+                    <td>{{headline}}</td>
+                    <td>{{author}}</td>
+                    <td>{{date}}</td>
+                    <td><a href="/edit-article/{{_id}}"><button class="action-button">Edit</button></a></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <a class="doubleCol" href="/create-article">
+            <button id="create-article-button" class="action-button">
+                Create Article
+            </button>
+        </a>
+        {{/if}}
+    </div>
+</main>
